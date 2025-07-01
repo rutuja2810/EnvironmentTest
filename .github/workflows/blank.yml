@@ -1,0 +1,38 @@
+
+
+name: Print Environment Variable from Dev and Prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Select environment'
+        required: true
+        default: development
+        type: choice
+        options:
+          - development
+          - production
+
+jobs:
+  print-env:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.target_env }}
+
+    steps:
+      - name: Echo selected environment
+        run: echo "Deploying to ${{ github.event.inputs.target_env }} environment..."
+
+      - name: Print environment-specific variable
+        run: |
+          if [ "${{ github.event.inputs.target_env }}" = "development" ]; then
+            echo "DEV_ENV = $DEV_ENV"
+          elif [ "${{ github.event.inputs.target_env }}" = "production" ]; then
+            echo "PROD_ENV = $PROD_ENV"
+          else
+            echo "Unknown environment!"
+          fi
+        env:
+          DEV_ENV: ${{ vars.DEV_ENV }}
+          PROD_ENV: ${{ vars.PROD_ENV }}
