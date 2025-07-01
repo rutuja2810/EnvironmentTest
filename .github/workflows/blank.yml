@@ -1,33 +1,31 @@
-name: Access Environment-Specific Variables
+name: Use Environment-Specific Variables
 
 on:
   workflow_dispatch:
     inputs:
       target_env:
-        description: 'Choose environment to deploy'
+        description: 'Select environment'
         required: true
-        default: dev
+        default: Dev
         type: choice
         options:
-          - dev
-          - production
+          - Dev
+          - Production
 
 jobs:
-  print-env:
+  show-env-vars:
     runs-on: ubuntu-latest
 
-    # This ensures GitHub loads the right environment's variables/secrets
+    # This links the job to the selected environment so it can access its variables
     environment:
       name: ${{ github.event.inputs.target_env }}
 
     steps:
-      - name: Echo selected environment
-        run: echo "Running in ${{ github.event.inputs.target_env }} environment"
-
-      - name: Read and print environment-specific variables
+      - name: Echo environment and variables
         run: |
-          echo "PROD_ENV = $PROD_ENV"
+          echo "Selected environment: ${{ github.event.inputs.target_env }}"
           echo "DEV_ENV = $DEV_ENV"
+          echo "PROD_ENV = $PROD_ENV"
         env:
-          PROD_ENV: ${{ vars.PROD_ENV }}
           DEV_ENV: ${{ vars.DEV_ENV }}
+          PROD_ENV: ${{ vars.PROD_ENV }}
