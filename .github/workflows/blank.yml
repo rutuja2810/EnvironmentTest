@@ -26,9 +26,15 @@ jobs:
         id: set-env
         run: |
           if [ "${{ github.event.inputs.target_env }}" = "development" ]; then
-            echo "ENV_VALUE=${{ vars.DEV_ENV }}" >> $GITHUB_OUTPUT
+            echo "ENV_VALUE=${{ vars.DEV_ENV }}" >> "$GITHUB_OUTPUT"
           else
-            echo "ENV_VALUE=${{ vars.PROD_ENV }}" >> $GITHUB_OUTPUT
+            echo "ENV_VALUE=${{ vars.PROD_ENV }}" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Print
+      - name: Print environment-specific and common variables
+        run: |
+          echo "COMMON_ENV = $COMMON_ENV"
+          echo "ENV_VALUE = $ENV_VALUE"
+        env:
+          COMMON_ENV: ${{ vars.COMMON_ENV }}   # ✅ Repository-level variable
+          ENV_VALUE: ${{ steps.set-env.outputs.ENV_VALUE }}  # ✅ From previous step
