@@ -26,8 +26,8 @@ jobs:
 
       - name: Read and print environment-specific variables
         run: |
-          echo "ENV_VAR = $ENV_VAR"
-          echo "OTHER_VAR = $OTHER_VAR"
+          echo "PROD_ENV = $PROD_ENV"
+          echo "DEV_ENV = $DEV_ENV"
         env:
-          ENV_VAR: ${{ vars.ENV_VAR }}
-          OTHER_VAR: ${{ vars.OTHER_VAR }}
+          PROD_ENV: ${{ vars.PROD_ENV }}
+          DEV_ENV: ${{ vars.DEV_ENV }}
