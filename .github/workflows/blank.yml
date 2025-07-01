@@ -22,10 +22,13 @@ jobs:
       - name: Echo selected environment
         run: echo "Deploying to ${{ github.event.inputs.target_env }} environment..."
 
-      - name: Print environment-specific and common variables
+      - name: Set ENV_VALUE
+        id: set-env
         run: |
-          echo "COMMON_ENV = $COMMON_ENV"
-          echo "ENV_VALUE = $ENV_VALUE"
-        env:
-          COMMON_ENV: ${{ vars.COMMON_ENV }}
-          ENV_VALUE: ${{ github.event.inputs.target_env == 'development' && vars.DEV_ENV || vars.PROD_ENV }}
+          if [ "${{ github.event.inputs.target_env }}" = "development" ]; then
+            echo "ENV_VALUE=${{ vars.DEV_ENV }}" >> $GITHUB_OUTPUT
+          else
+            echo "ENV_VALUE=${{ vars.PROD_ENV }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Print
