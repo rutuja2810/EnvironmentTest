@@ -1,10 +1,10 @@
-name: Print Selected Environment
+name: Print GitHub Environment
 
 on:
   workflow_dispatch:
     inputs:
       target_env:
-        description: 'Select environment'
+        description: "Select GitHub environment"
         required: true
         default: Dev
         type: choice
@@ -13,12 +13,16 @@ on:
           - Production
 
 jobs:
-  print-selected-env:
+  print-env:
     runs-on: ubuntu-latest
 
+    # GitHub uses this to load environment-specific variables/secrets
     environment:
-      name: ${{ github.event.inputs.target_env }}  # This makes GitHub expose env vars/secrets for that environment
+      name: ${{ github.event.inputs.target_env }}
 
     steps:
-      - name: Print selected environment name
-        run: echo "Environment selected: ${{ github.event.inputs.target_env }}"
+      - name: Print selected GitHub environment
+        run: |
+          echo "Selected GitHub Environment: $TARGET_ENV"
+        env:
+          TARGET_ENV: ${{ github.job.environment }}
