@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       target_env:
-        description: 'Select environment'
+        description: 'Choose environment'
         required: true
         default: Dev
         type: choice
@@ -13,19 +13,25 @@ on:
           - Production
 
 jobs:
-  show-env-vars:
+  print-vars:
     runs-on: ubuntu-latest
 
-    # This links the job to the selected environment so it can access its variables
+    # ✅ MUST match your GitHub environment name exactly (case-sensitive)
     environment:
       name: ${{ github.event.inputs.target_env }}
 
     steps:
-      - name: Echo environment and variables
+      - name: Show selected environment
+        run: echo "Selected environment: ${{ github.event.inputs.target_env }}"
+
+      - name: Print environment variables
         run: |
-          echo "Selected environment: ${{ github.event.inputs.target_env }}"
           echo "DEV_ENV = $DEV_ENV"
           echo "PROD_ENV = $PROD_ENV"
         env:
           DEV_ENV: ${{ vars.DEV_ENV }}
           PROD_ENV: ${{ vars.PROD_ENV }}
+
+      # Optional: Debug all available environment variables
+      - name: Debug all env vars
+        run: env
