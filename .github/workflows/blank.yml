@@ -16,7 +16,6 @@ jobs:
   print-vars:
     runs-on: ubuntu-latest
 
-    # ✅ MUST match your GitHub environment name exactly (case-sensitive)
     environment:
       name: ${{ github.event.inputs.target_env }}
 
@@ -32,6 +31,5 @@ jobs:
           DEV_ENV: ${{ vars.DEV_ENV }}
           PROD_ENV: ${{ vars.PROD_ENV }}
 
-      # Optional: Debug all available environment variables
-      - name: Debug all env vars
+      - name: Debug all environment variables (optional)
         run: env
