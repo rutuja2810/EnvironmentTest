@@ -1,6 +1,12 @@
 name: Test Vars
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Deployment environment'
+        required: true
+        default: development
 
 jobs:
   test-vars:
