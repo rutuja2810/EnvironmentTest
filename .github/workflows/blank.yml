@@ -1,6 +1,10 @@
+name: Test Vars
+
+on: [push]
+
 jobs:
-  example:
+  test-vars:
     runs-on: ubuntu-latest
     steps:
-      - name: Access GitHub variable
-        run: echo "Value is ${{ vars.MY_VAR }}"
+      - name: Print a GitHub variable
+        run: echo "My variable is ${{ vars.MY_VAR }}"
