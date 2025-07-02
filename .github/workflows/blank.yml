@@ -5,7 +5,11 @@ on: [push]
 jobs:
   test-vars:
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - name: Print a GitHub variable
-        run: echo "My variable is ${{ vars.MY_VAR }}"
-        run: echo "My variable is - ${{ vars.DEV_ENV }}"
+        run: |
+          echo "My variable is ${{ vars.MY_VAR }}"
+          echo "My variable is ${{ vars.DEV_ENV }}"
+
+        
