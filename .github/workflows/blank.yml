@@ -17,8 +17,8 @@ jobs:
       - name: Print a GitHub variable
         run: |
           echo "My variable is ${{ vars.MY_VAR }}"
-          echo "My variable is ${{ vars.DEV_ENV }}"
-          echo "My variable is ${{ vars.PROD_ENV }}"
+          echo "My development env is ${{ vars.DEV_ENV }}"
+          echo "My prod env is ${{ vars.PROD_ENV }}"
 
          
 
