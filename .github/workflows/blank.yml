@@ -8,7 +8,7 @@ on:
         type: choice
         options:
           - development
-          - production
+          - Production
 jobs:
   test-vars:
     runs-on: ubuntu-latest
@@ -19,6 +19,8 @@ jobs:
           echo "My variable is ${{ vars.MY_VAR }}"
           echo "My development env is ${{ vars.DEV_ENV }}"
           echo "My Dev var is ${{ vars.MY_VAR }}"
+          echo "My Prod var is ${{ vars.PROD_VAR }}"
+
 
          
 
