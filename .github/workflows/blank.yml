@@ -1,18 +1,20 @@
-name: Deploy to Staging
-
-on:
-  push:
-    branches: [ main ]
+name: Hi Mascot
+on: push
+env:
+  mascot: Mona
+  super_duper_var: totally_awesome
 
 jobs:
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    environment: staging 
-
+  windows_job:
+    runs-on: windows-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Print secret (for testing)
-        run: echo "API Key is ${{ secrets.API_KEY }}"
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Mona
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Octocat
+        env:
+          mascot: Octocat
+  linux_job:
+    runs-on: ubuntu-latest
+    env:
+      mascot: Tux
+    steps:
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
