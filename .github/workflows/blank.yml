@@ -9,7 +9,7 @@ on:
         default: development
         options:
           - development 
-          - production
+          - Production
 jobs:
   test-vars:
     runs-on: ubuntu-latest
