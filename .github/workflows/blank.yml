@@ -1,15 +1,14 @@
 name: Test Vars
-
 on:
   workflow_dispatch:
     inputs:
       env:
         description: 'Deployment environment'
         required: true
-        default: development
+        type: choice
         options:
-          - development 
-          - Production
+          - development
+          - production
 jobs:
   test-vars:
     runs-on: ubuntu-latest
