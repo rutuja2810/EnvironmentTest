@@ -1,28 +1,19 @@
-name: Print GitHub Environment
-
+name: Deploy to Production
 on:
-  workflow_dispatch:
-    inputs:
-      target_env:
-        description: "Select GitHub environment"
-        required: true
-        default: Dev
-        type: choice
-        options:
-          - Dev
-          - Production
-
+  push:
+    branches:
+      - main
 jobs:
-  print-env:
+  deploy:
     runs-on: ubuntu-latest
-
-    # GitHub uses this to load environment-specific variables/secrets
-    environment:
-      name: ${{ github.event.inputs.target_env }}
-
+    environment: production
     steps:
-      - name: Print selected GitHub environment
-        run: |
-          echo "Selected GitHub Environment: $TARGET_ENV"
-        env:
-          TARGET_ENV: ${{ github.job.environment }}
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - run: npm install
+    - run: npm run build
+    - run: npm run deploy
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
