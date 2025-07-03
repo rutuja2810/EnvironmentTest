@@ -1,17 +1,21 @@
-name: TestInput
+name: Manual Deploy
 
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Select environment'
+        description: 'Which environment to deploy to?'
         required: true
         default: 'staging'
+      version:
+        description: 'App version (optional)'
+        required: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy
+      - name: Show input values
         run: |
-          echo "Deploying to ${{ github.event.inputs.environment }} environment"
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Version: ${{ github.event.inputs.version || 'not specified' }}"
