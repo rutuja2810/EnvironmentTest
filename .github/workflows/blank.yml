@@ -25,6 +25,9 @@ jobs:
         run: |
           echo "DEV_ENV=xyz" >> $GITHUB_ENV
           echo "DEV_ENV set to "$DEV_ENV
+          NEW_DEV_ENV="ABC"
+          echo "DEV_ENV=$NEW_DEV_ENV" >> $GITHUB_ENV
+          echo "DEV_ENV updated to $DEV_ENV"
 
      
 
