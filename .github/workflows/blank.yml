@@ -21,7 +21,7 @@ jobs:
           echo "My Prod var is ${{ vars.MY_VAR }}"
           echo "My Dev var is ${{ vars.MY_VAR }}"
    
-      - name: Print a GitHub variable
+      - name: Print updated GitHub variable
         run: |
           echo "MY_VAR=Updated value" >> $GITHUB_ENV
           echo "My variable is ${{ vars.MY_VAR }}"
