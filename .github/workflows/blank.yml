@@ -24,7 +24,7 @@ jobs:
       - name: Print updated GitHub variable
         run: |
           echo "MY_VAR=Updated value" >> $GITHUB_ENV
-          echo "My variable is $MY_VAR"
+          echo "My variable is ${{ vars.MY_VAR }}"
 
      
 
