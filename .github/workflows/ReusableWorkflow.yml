@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print the message
-        run: echo "🟢 Message received: ${{ inputs.message }}"
+        run: echo "Message received:${{ inputs.message }}"
