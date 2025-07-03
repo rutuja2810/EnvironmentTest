@@ -24,7 +24,7 @@ jobs:
       - name: Print updated GitHub variable
         run: |
           echo "DEV_ENV=xyz" >> $GITHUB_ENV
-          echo "DEV_ENV set to xyz"
+          echo "DEV_ENV set to "$DEV_ENV
 
      
 
