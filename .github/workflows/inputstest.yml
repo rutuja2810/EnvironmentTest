@@ -1,7 +1,13 @@
 name: TestInput
+
 on:
   workflow_dispatch:
-       
+    inputs:
+      environment:
+        description: 'Select environment'
+        required: true
+        default: 'staging'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
