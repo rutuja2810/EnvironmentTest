@@ -18,8 +18,9 @@ jobs:
         run: |
           echo "My variable is ${{ vars.MY_VAR }}"
           echo "My development env is ${{ vars.DEV_ENV }}"
-          echo "My Dev var is ${{ vars.MY_VAR }}"
           echo "My Prod var is ${{ vars.MY_VAR }}"
+          echo "My Dev var is ${{ vars.MY_VAR }}"
+          
 
 
          
