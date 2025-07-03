@@ -1,4 +1,4 @@
-name: Test Vars
+name: Test Vars1
 on:
   workflow_dispatch:
     inputs:
