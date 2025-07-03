@@ -15,18 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - name: Step 1 - Set initial DEV_ENV and modify it
+      - name: Set initial DEV_ENV and modify it
         run: |
           echo "DEV_ENV=xyz" >> $GITHUB_ENV
-          echo "Step 1: DEV_ENV set to xyz"
+          echo "DEV_ENV set to xyz"
 
-      - name: Step 2 - Read modified DEV_ENV, change again, and print
+      - name: Read modified DEV_ENV, change again, and print
         run: |
-          echo "Step 2: Original DEV_ENV is $DEV_ENV"
+          echo "Original DEV_ENV is $DEV_ENV"
           NEW_DEV_ENV="ABC"
           echo "DEV_ENV=$NEW_DEV_ENV" >> $GITHUB_ENV
-          echo "Step 2: DEV_ENV updated to $NEW_DEV_ENV"
+          echo "DEV_ENV updated to $NEW_DEV_ENV"
 
-      - name: Step 3 - Print final DEV_ENV value
+      - name: Print final DEV_ENV value
         run: |
-          echo "Step 3: DEV_ENV is now $DEV_ENV"
+          echo "DEV_ENV is now $DEV_ENV"
