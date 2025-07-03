@@ -26,6 +26,8 @@ jobs:
           echo "MY_VAR=Updated value" >> $GITHUB_ENV
           echo "My variable is $MY_VAR"
 
+     
+
           
 
 
