@@ -1,0 +1,15 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      message:
+        required: true
+        type: string
+
+jobs:
+  say-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the message
+        run: echo "🟢 Message received: ${{ inputs.message }}"
