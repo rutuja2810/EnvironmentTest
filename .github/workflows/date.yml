@@ -1,12 +1,11 @@
 name: Print date
-
 on:
-  pull_request:
+  push:
     branches:
       - main
 jobs:
   dynamic-variables:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu
     steps: 
       - name: Checkout code
         uses: actions/checkout@v4
