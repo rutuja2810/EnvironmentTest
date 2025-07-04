@@ -1,21 +1,18 @@
-name: DynamicEnvironmentVariables
-
+name: Dynamic Environment Variables
 on:
   push:
     branches:
       - main
-
 jobs:
-  dynamic-variables-1:
+  PrintDate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set Colour
+      - name: Set date
         run: |
-          echo "COLOUR=blue" >> $GITHUB_ENV
-
-      - name: Echo Colour
+          DATE=$(date +'%Y%m%d')
+          echo "DATE=$DATE" >> $GITHUB_ENV
+      - name: Echo Date
         run: |
-          echo "The colour is: $COLOUR"
+          echo "The date this run was created was $DATE"
