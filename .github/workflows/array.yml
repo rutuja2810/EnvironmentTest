@@ -1,0 +1,17 @@
+name: Array 
+
+on:
+  push:
+    branches:
+      - main
+env:
+  MY_ARRAY: '["apple", "banana", "cherry"]'
+
+jobs:
+  array-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Access elements from array
+        run: |
+          echo "First item: ${{ fromJSON(env.MY_ARRAY)[0] }}"
+          echo "Second item: ${{ fromJSON(env.MY_ARRAY)[1] }}"
