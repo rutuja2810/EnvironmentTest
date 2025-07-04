@@ -1,19 +1,18 @@
-name: Print date
+name: Dynamic Environment Variables
 on:
-  push:
+  pull_request:
     branches:
       - main
 jobs:
-  dynamic-variables:
-    runs-on: ubuntu
-    steps: 
+  dynamic-variables-3:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Set date
         run: |
           DATE=$(date +'%Y%m%d')
-          echo "DATE=$DATE" >> GITHUB_ENV
+          echo "DATE=$DATE" >> $GITHUB_ENV
       - name: Echo Date
         run: |
-          echo "The Date: $DATE"
+          echo "The date this run was created was $DATE"
