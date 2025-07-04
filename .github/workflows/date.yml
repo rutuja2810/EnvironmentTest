@@ -1,6 +1,6 @@
 name: Dynamic Environment Variables
 on:
-  pull_request:
+  push:
     branches:
       - main
 jobs:
