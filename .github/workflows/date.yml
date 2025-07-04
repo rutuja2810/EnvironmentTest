@@ -1,4 +1,4 @@
-name: Dynamic Environment Variables
+name: Date Print
 on:
   push:
     branches:
