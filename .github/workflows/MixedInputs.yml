@@ -7,8 +7,8 @@ on:
         type: choice
         description: Who to greet
         options: 
-        - monalisa
-        - cschleiden
+        - abc
+        - xyz
       message:
         required: true
       use-emoji:
