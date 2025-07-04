@@ -1,0 +1,17 @@
+env:
+  URLS: '{"dev": "dev.example.com", "prod": "prod.example.com"}'
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options: [dev, prod]
+
+jobs:
+  map-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print URL for selected environment
+        run: |
+          echo "URL is: ${{ fromJSON(env.URLS)[github.event.inputs.environment] }}"
