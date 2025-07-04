@@ -1,18 +1,20 @@
-name: Dynamic Environment Variables
+name: DynamicEnvironmentVariables
+
 on:
-pull_request:
-branches:
-- main
+  push:
+    branches:
+      - main
+
 jobs:
-dynamic-variables-1:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout code
-uses: actions/checkout@v4
-- name: Set Colour
-run: |
-COLOUR="blue"
-echo "COLOUR=$COLOUR" >> $GITHUB_ENV
-- name: Echo Colour
-run: |
-echo $COLOUR
+  dynamic-variables-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Colour
+        run: |
+          echo "COLOUR=blue" >> $GITHUB_ENV
+      - name: Echo Colour
+        run: |
+          echo "The colour is: $COLOUR"
