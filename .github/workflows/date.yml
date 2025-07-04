@@ -5,9 +5,9 @@ on:
     branches:
       - main
 jobs:
-  dynamic-variables-3:
-    run-on: ubuntu-latest
-
+jobs:
+  dynamic-variables:
+    runs-on: ubuntu-latest
     steps: 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -16,7 +16,6 @@ jobs:
         run: |
           DATE=$(date +'%Y%m%d')
           echo "DATE=$DATE" >> GITHUB_ENV
-
-       - name: Echo Date
-         run: |
+      - name: Echo Date
+        run: |
           echo "The Date: $DATE"
