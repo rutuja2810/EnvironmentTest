@@ -1,0 +1,24 @@
+name: Mixed inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: Who to greet
+        options: 
+        - abc
+        - xyz
+      message:
+        required: true
+      
+      environment:
+        type: environment
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send greeting
+      run: echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
