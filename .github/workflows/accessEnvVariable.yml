@@ -21,4 +21,8 @@ jobs:
 
     steps:
     - name: Send greeting
-      run: echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
+      run: |
+        echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
+        echo "ENV VAR: ${{ vars.DEV_ENV }}"
+
+      
