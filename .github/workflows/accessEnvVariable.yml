@@ -1,5 +1,3 @@
-name: AccessEnvVar
-
 name: Mixed inputs
 
 on:
@@ -13,7 +11,7 @@ on:
         - xyz
       message:
         required: true
-      
+
       environment:
         type: environment
 
@@ -24,5 +22,5 @@ jobs:
     steps:
     - name: Send greeting
       run: |
-      echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
-      echo "ENV VAR: ${{ vars.DEV_ENV }}"
+        echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
+        echo "ENV VAR: ${{ vars.DEV_ENV }}"
