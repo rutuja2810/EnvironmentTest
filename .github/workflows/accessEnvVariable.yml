@@ -1,5 +1,7 @@
 name: AccessEnvVar
 
+name: Mixed inputs
+
 on:
   workflow_dispatch:
     inputs:
@@ -11,18 +13,16 @@ on:
         - xyz
       message:
         required: true
-        description: Custom message
+      
       environment:
-        description: Target environment (e.g. dev, staging)
-        required: true
+        type: environment
 
 jobs:
   greet:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}   # Use input here
 
     steps:
     - name: Send greeting
       run: |
-        echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
-        echo "ENV VAR: ${{ vars.DEV_ENV }}"
+      echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
+      echo "ENV VAR: ${{ vars.DEV_ENV }}"
