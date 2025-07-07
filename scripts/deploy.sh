@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set x
 echo "Starting deployment..."
 echo "App Name: $APP_NAME"
 echo "Target Environment: $ENVIRONMENT"
