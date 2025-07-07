@@ -9,5 +9,8 @@ if [ "$ENVIRONMENT" = "production" ]; then
 else
   echo "Deploying to $ENVIRONMENT environment"
 fi
-
+echo "WORKSPACE is: $WORKSPACE"
+export WSPACE_STAGE=${WORKSPACE}
+echo "WSPACE_STAGE is: $WSPACE_STAGE"
 echo "Deployment finished."
+
