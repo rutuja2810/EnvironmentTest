@@ -1,6 +1,7 @@
 name: Env Variable test
 
-on: [push]
+on:
+  workflow_dispatch:
 
 env:
   GLOBAL_NAME: Abc 
