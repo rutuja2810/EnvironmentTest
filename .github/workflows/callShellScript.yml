@@ -20,3 +20,4 @@ jobs:
         env:
           APP_NAME: my-app
           ENVIRONMENT: development
+          WORKSPACE: ${{ github.workspace }}
