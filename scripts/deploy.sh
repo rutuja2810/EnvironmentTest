@@ -28,7 +28,15 @@ while [ $i -le 3 ]; do
   sleep 1
 done
 
-curl -s -o /dev/null -w "Status: %{http_code}\n" https://www.google.com
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://www.google.com)
+echo "HTTP Status Code: $STATUS"
+
+if [ "$STATUS" -ne 200 ]; then
+  echo "Request failed!"
+  exit 1
+else
+  echo "Request succeeded!"
+fi
 
 echo "Deployment finished."
 
