@@ -15,8 +15,8 @@ echo "WSPACE_STAGE is: $WSPACE_STAGE"
 
 #cp -rp $WSPACE_STAGE/ab/cde/* $WSPACE_STAGE/
 echo "Deployment Summary" > $WSPACE_STAGE/Depl_Summary.log
-echo "---------------------------------------" >> $WSPACE_STAGE/Depl_Summary.log
-cat WSPACE_STAGE/Depl_Summary.log
+echo "---------------------------------------" >> $WSPACE_STAGE/Summary.log
+cat WSPACE_STAGE/Summary.log
 
 echo "Deployment finished."
 
