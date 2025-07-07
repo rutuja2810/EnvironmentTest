@@ -7,15 +7,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:
-      APP_NAME: my-app
-      ENVIRONMENT: development 
-
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Make deploy script executable
+      - name: Make script executable
         run: chmod +x scripts/deploy.sh
 
       - name: Run deploy script
