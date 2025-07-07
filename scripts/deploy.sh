@@ -17,6 +17,6 @@ echo "WSPACE_STAGE is: $WSPACE_STAGE"
 echo "Deployment Summary" > $WSPACE_STAGE/Depl_Summary.log
 echo "---------------------------------------" >> $WSPACE_STAGE/Summary.log
 cat WSPACE_STAGE/Summary.log
-
+ls -lrt 
 echo "Deployment finished."
 
