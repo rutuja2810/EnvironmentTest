@@ -12,5 +12,8 @@ fi
 echo "WORKSPACE is: $WORKSPACE"
 export WSPACE_STAGE=${WORKSPACE}
 echo "WSPACE_STAGE is: $WSPACE_STAGE"
+
+cp -rp $WSPACE_STAGE/ab/cde/* $WSPACE_STAGE/
+
 echo "Deployment finished."
 
