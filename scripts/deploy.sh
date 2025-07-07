@@ -18,5 +18,14 @@ echo "Deployment Summary" > $WSPACE_STAGE/Depl_Summary.log
 echo "---------------------------------------" >> $WSPACE_STAGE/Summary.log
 cat WSPACE_STAGE/Summary.log
 ls -lrt 
+
+echo "Starting while loop..."
+
+i=1
+while [ $i -le 5 ]; do
+  echo "Iteration $i"
+  ((i++))
+  sleep 1
+done
 echo "Deployment finished."
 
