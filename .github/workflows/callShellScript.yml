@@ -16,3 +16,7 @@ jobs:
 
       - name: Run deploy script
         run: ./scripts/deploy.sh
+        
+        env:
+          APP_NAME: my-app
+          ENVIRONMENT: development
