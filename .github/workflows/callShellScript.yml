@@ -1,0 +1,22 @@
+name: call shell script
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_NAME: my-app
+      ENVIRONMENT: development 
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Make deploy script executable
+        run: chmod +x scripts/deploy.sh
+
+      - name: Run deploy script
+        run: ./scripts/deploy.sh
