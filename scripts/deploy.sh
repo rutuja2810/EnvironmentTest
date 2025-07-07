@@ -22,7 +22,7 @@ ls -lrt
 echo "Starting while loop..."
 
 i=1
-while [ $i -le 5 ]; do
+while [ $i -le 3 ]; do
   echo "Iteration $i"
   ((i++))
   sleep 1
