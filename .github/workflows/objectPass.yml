@@ -1,0 +1,27 @@
+name: Pass Object as Input
+
+on:
+  workflow_dispatch:
+    inputs:
+      objectInput:
+        description: 'JSON object input'
+        required: true
+        default: '{"key1": "value1", "key2": "value2"}'
+
+jobs:
+  process-object:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Parse JSON Input
+        id: parse
+        run: |
+          echo "Input JSON: ${{ github.event.inputs.objectInput }}"
+          echo "::set-output name=parsed::${{ github.event.inputs.objectInput }}"
+      
+      - name: Access Object Properties
+        run: |
+          echo "Key1: $(echo '${{ steps.parse.outputs.parsed }}' | jq -r '.key1')"
+          echo "Key2: $(echo '${{ steps.parse.outputs.parsed }}' | jq -r '.key2')"
+        env:
+          INPUT_JSON: ${{ steps.parse.outputs.parsed }}
+
