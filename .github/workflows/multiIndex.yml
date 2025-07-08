@@ -1,24 +1,17 @@
-name: Simple Object Input
+env:
+  URLS: '{"dev": "dev.example.com", "prod": "prod.example.com"}'
 
 on:
   workflow_dispatch:
     inputs:
-      data:
-        description: 'Enter JSON object (e.g. {"name": "Alice", "env": "dev"})'
-        required: true
+      environment:
+        type: choice
+        options: [dev, prod]
 
 jobs:
-  print:
+  map-example:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse input safely
+      - name: Print URL for selected environment
         run: |
-          JSON_INPUT="${{ inputs.data }}"
-
-          echo "Raw input: $JSON_INPUT"
-
-          NAME=$(echo "$JSON_INPUT" | jq -r '.name // "default-name"')
-          ENV=$(echo "$JSON_INPUT" | jq -r '.env // "default-env"')
-
-          echo "Name: $NAME"
-          echo "Environment: $ENV"
+          echo "URL is: ${{ fromJSON(env.URLS)[github.event.inputs.environment] }}"
