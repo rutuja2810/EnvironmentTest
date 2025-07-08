@@ -1,24 +1,22 @@
-name: Pass Object as Input
+name: Simple Object Input
 
 on:
   workflow_dispatch:
     inputs:
-      objectInput:
-        description: 'JSON object input (e.g., {"key1":"value1", "key2":"value2"})'
+      data:
+        description: 'Enter JSON object (e.g. {"name": "Alice", "env": "dev"})'
         required: true
 
 jobs:
-  process-object:
+  print:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse and Access Object Properties
+      - name: Parse input
         run: |
-          echo "Raw input: ${{ inputs.objectInput }}"
-          
-          JSON_INPUT='${{ inputs.objectInput }}'
+          JSON='${{ inputs.data }}'
 
-          KEY1=$(echo "$JSON_INPUT" | jq -r '.key1 // "default1"')
-          KEY2=$(echo "$JSON_INPUT" | jq -r '.key2 // "default2"')
+          NAME=$(echo "$JSON" | jq -r '.name // "default-name"')
+          ENV=$(echo "$JSON" | jq -r '.env // "default-env"')
 
-          echo "Key1: $KEY1"
-          echo "Key2: $KEY2"
+          echo "Name: $NAME"
+          echo "Environment: $ENV"
