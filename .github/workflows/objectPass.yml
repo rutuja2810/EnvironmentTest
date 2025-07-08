@@ -4,11 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       objectInput:
-        description: 'JSON object input (e.g., {"key1":"value1","key2":"value2"})'
+        description: 'JSON object input (e.g., {"key1":"value1", "key2":"value2"})'
         required: true
 
 jobs:
   process-object:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Raw JSON Input
+      - name: Parse and Access Object Properties
+        run: |
+          echo "Raw input: ${{ inputs.objectInput }}"
+          
+          JSON_INPUT='${{ inputs.objectInput }}'
+
+          KEY1=$(echo "$JSON_INPUT" | jq -r '.key1 // "default1"')
+          KEY2=$(echo "$JSON_INPUT" | jq -r '.key2 // "default2"')
+
+          echo "Key1: $KEY1"
+          echo "Key2: $KEY2"
