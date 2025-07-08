@@ -11,13 +11,9 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse input
-        shell: bash
+      - name: Parse input safely
         run: |
-          # Save input to a variable using a heredoc to preserve structure
-          read -r -d '' JSON_INPUT << EOF
-${{ inputs.data }}
-EOF
+          JSON_INPUT="${{ inputs.data }}"
 
           echo "Raw input: $JSON_INPUT"
 
