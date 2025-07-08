@@ -19,10 +19,10 @@ jobs:
 ${{ inputs.data }}
 EOF
 
-          echo "🔍 Raw input: $JSON_INPUT"
+          echo "Raw input: $JSON_INPUT"
 
           NAME=$(echo "$JSON_INPUT" | jq -r '.name // "default-name"')
           ENV=$(echo "$JSON_INPUT" | jq -r '.env // "default-env"')
 
-          echo "✅ Name: $NAME"
-          echo "✅ Environment: $ENV"
+          echo "Name: $NAME"
+          echo "Environment: $ENV"
