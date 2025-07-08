@@ -12,11 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Parse input
+        shell: bash
         run: |
-          JSON='${{ inputs.data }}'
+          # Save input to a variable using a heredoc to preserve structure
+          read -r -d '' JSON_INPUT << EOF
+${{ inputs.data }}
+EOF
 
-          NAME=$(echo "$JSON" | jq -r '.name // "default-name"')
-          ENV=$(echo "$JSON" | jq -r '.env // "default-env"')
+          echo "🔍 Raw input: $JSON_INPUT"
 
-          echo "Name: $NAME"
-          echo "Environment: $ENV"
+          NAME=$(echo "$JSON_INPUT" | jq -r '.name // "default-name"')
+          ENV=$(echo "$JSON_INPUT" | jq -r '.env // "default-env"')
+
+          echo "✅ Name: $NAME"
+          echo "✅ Environment: $ENV"
