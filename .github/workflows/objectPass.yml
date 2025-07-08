@@ -1,24 +1,22 @@
-name: Simple Object Input
+name: Object Input Example
 
 on:
   workflow_dispatch:
     inputs:
-      data:
-        description: 'Enter JSON object (e.g. {"name": "Alice", "env": "dev"})'
+      userData:
+        description: 'JSON object (e.g. {"name": "John", "age": 30})'
         required: true
 
 jobs:
-  print:
+  use-input:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse input safely
+      - name: Parse input JSON
         run: |
-          JSON_INPUT="${{ inputs.data }}"
+          INPUT='${{ inputs.userData }}'
 
-          echo "Raw input: $JSON_INPUT"
-
-          NAME=$(echo "$JSON_INPUT" | jq -r '.name // "default-name"')
-          ENV=$(echo "$JSON_INPUT" | jq -r '.env // "default-env"')
+          NAME=$(echo "$INPUT" | jq -r '.name // "unknown"')
+          AGE=$(echo "$INPUT" | jq -r '.age // 0')
 
           echo "Name: $NAME"
-          echo "Environment: $ENV"
+          echo "Age: $AGE"
