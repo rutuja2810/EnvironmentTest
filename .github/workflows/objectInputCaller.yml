@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-reusable:
-    uses: ./.github/workflows/reusable.yml
+    uses: ./.github/workflows/objectInputreusable.yml
     with:
       config: |
         {
