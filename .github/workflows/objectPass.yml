@@ -1,22 +1,25 @@
-name: Object Input Example
+name: Object Input Workflow
 
 on:
   workflow_dispatch:
     inputs:
-      userData:
-        description: 'JSON object (e.g. {"name": "John", "age": 30})'
+      config:
+        description: 'Configuration as JSON string'
         required: true
+        type: string
 
 jobs:
-  use-input:
+  use-object:
     runs-on: ubuntu-latest
     steps:
-      - name: Parse input JSON
+      - name: Print raw config input
+        run: echo '${{ inputs.config }}'
+
+      - name: Parse JSON and use values
         run: |
-          INPUT='${{ inputs.userData }}'
-
-          NAME=$(echo "$INPUT" | jq -r '.name // "unknown"')
-          AGE=$(echo "$INPUT" | jq -r '.age // 0')
-
-          echo "Name: $NAME"
-          echo "Age: $AGE"
+          echo "Parsing input config..."
+          CONFIG='${{ inputs.config }}'
+          REGION=$(echo "$CONFIG" | jq -r '.region')
+          INSTANCE_TYPE=$(echo "$CONFIG" | jq -r '.instanceType')
+          echo "Region: $REGION"
+          echo "Instance Type: $INSTANCE_TYPE"
