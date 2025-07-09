@@ -7,10 +7,10 @@ jobs:
   parse-json:
     runs-on: ubuntu-latest
     env:
-      CONFIG: ${{ vars.config_VG }}  # Load your variable into the environment
-
+      CONFIG: ${{ vars.config_VG }} 
+      
     steps:
-      - name: Show raw config
+      - name: Show config
         run: echo "${{ env.CONFIG }}"
 
       - name: Extract values from JSON
