@@ -1,0 +1,15 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      config:
+        required: true
+        type: string
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show config
+        run: echo '${{ inputs.config }}'
