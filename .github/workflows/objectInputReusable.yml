@@ -1,23 +1,17 @@
-name: Access JSON from env variable
+name: Reusable Workflow
 
 on:
   workflow_dispatch:
-
-env:
-  CONFIG: |
-    {
-      "region": "us-east-1",
-      "instanceType": "t2.micro"
-    }
+    inputs:
+      config:
+        required: true
+        type: string
 
 jobs:
-  access-config:
+  print:
     runs-on: ubuntu-latest
     steps:
-      - name: Show raw config
-        run: echo '${{ env.CONFIG }}'
-
-      - name: Access values from CONFIG
+      - name: Show config
         run: |
-          echo "Region: ${{ fromJSON(env.CONFIG).region }}"
-          echo "Instance Type: ${{ fromJSON(env.CONFIG).instanceType }}"
+          echo '${{ inputs.config }}'
+          echo "Region: ${{ fromJSON(inputs.config).region }}"
