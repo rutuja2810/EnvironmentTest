@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show raw JSON config
-        run: echo "${{ vars.CONFIG_VG }}"  # Direct access to variable
+      - name: Show JSON config
+        run: echo "${{ vars.CONFIG_VG }}"  
 
       - name: Extract values from JSON
         run: |
