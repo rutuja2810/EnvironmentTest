@@ -1,4 +1,5 @@
 name: Object Input Workflow
+
 on:
   workflow_dispatch:
     inputs:
@@ -8,17 +9,26 @@ on:
         type: string
 
 jobs:
-  use-object:
+  parse-config:
     runs-on: ubuntu-latest
     steps:
-      - name: Print raw config input
-        run: echo '${{ inputs.config }}'
+      - name: Print raw input
+        run: echo "${{ inputs.config }}"
 
-      - name: Parse JSON and use values
+      - name: Parse config JSON
+        shell: bash
         run: |
-          echo "Parsing input config..."
-          CONFIG='${{ inputs.config }}'
-          REGION=$(echo "$CONFIG" | jq -r '.region')
-          INSTANCE_TYPE=$(echo "$CONFIG" | jq -r '.instanceType')
+          echo "Raw input:"
+          echo "${{ inputs.config }}"
+
+          # Safely pass the input to a variable
+          CONFIG_JSON=$(echo '${{ inputs.config }}' | jq '.')
+
+          echo "Parsed JSON:"
+          echo "$CONFIG_JSON"
+
+          REGION=$(echo "$CONFIG_JSON" | jq -r '.region')
+          INSTANCE_TYPE=$(echo "$CONFIG_JSON" | jq -r '.instanceType')
+
           echo "Region: $REGION"
           echo "Instance Type: $INSTANCE_TYPE"
