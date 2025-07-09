@@ -13,5 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show config
-        run: echo '${{ inputs.config }}'
-        
+        run: |
+          echo '${{ inputs.config }}'
+          echo "Region: ${{ fromJSON(inputs.config).region }}"
