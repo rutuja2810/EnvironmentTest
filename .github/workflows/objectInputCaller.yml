@@ -7,7 +7,7 @@ jobs:
   parse-json:
     runs-on: ubuntu-latest
     env:
-      CONFIG: ${{ vars.config_VG }} 
+      CONFIG: ${{ vars.CONFIG_VG }} 
       
     steps:
       - name: Show config
