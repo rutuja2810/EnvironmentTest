@@ -1,5 +1,4 @@
 name: Object Input Workflow
-
 on:
   workflow_dispatch:
     inputs:
