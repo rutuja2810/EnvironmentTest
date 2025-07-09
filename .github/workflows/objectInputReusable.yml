@@ -1,7 +1,8 @@
 name: Reusable Workflow
 
 on:
-  workflow_call:
+  #workflow_call,
+  workflow_dispatch:
     inputs:
       config:
         required: true
@@ -13,3 +14,4 @@ jobs:
     steps:
       - name: Show config
         run: echo '${{ inputs.config }}'
+        
