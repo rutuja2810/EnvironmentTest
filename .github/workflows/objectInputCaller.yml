@@ -11,9 +11,9 @@ jobs:
       
     steps:
       - name: Show config
-        run: echo "${{ env.CONFIG }}"
+        run: echo "${{ env.CONFIG_VG }}"
 
       - name: Extract values from JSON
         run: |
-          echo "Region: ${{ fromJSON(env.CONFIG).region }}"
-          echo "Instance Type: ${{ fromJSON(env.CONFIG).instanceType }}"
+          echo "Region: ${{ fromJSON(env.CONFIG_VG).region }}"
+          echo "Instance Type: ${{ fromJSON(env.CONFIG_VG).instanceType }}"
